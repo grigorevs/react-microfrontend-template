@@ -6,8 +6,9 @@ module.exports = {
   mode: 'development',
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
+    publicPath: 'http://localhost:3001/'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -24,14 +25,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx|ts|tsx)$/,
+        test: /\.tsx?$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-          },
-        },
       },
     ],
   },
@@ -40,21 +36,20 @@ module.exports = {
       template: './public/index.html',
     }),
     new ModuleFederationPlugin({
-      name: 'mainApp',
+      name: 'app1',
       remotes: {
-        todo: 'todo@http://localhost:3001/remoteEntry.js',
-        auth: 'auth@http://localhost:3002/remoteEntry.js', 
+        app2: 'app2@http://localhost:3002/remoteEntry.js',
       },
-      shared: {
-        react: { singleton: true, eager: true },
-        'react-dom': { singleton: true, eager: true },
-        zustand: { singleton: true, eager: true },
-      },
+      // shared: {
+      //   react: { singleton: true, eager: false },
+      //   'react-dom': { singleton: true, eager: false },
+      //   zustand: { singleton: true, eager: false },
+      // },
     }),
   ],
   devServer: {
-    static: path.join(__dirname, 'dist'),
-    port: 3000,
+    static: path.join(__dirname, 'public'),
+    port: 3001,
     hot: true,
   },
 };
