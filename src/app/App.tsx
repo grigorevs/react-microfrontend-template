@@ -8,11 +8,10 @@ const Button = lazy(() => import('app2/Button'));
 function App() {
   return (
     <Layout>
-      <Routing />
+      <Button />
       <ThemeToggler />
-      <Suspense fallback={<div>Loading Button...</div>}>
-        <Button />
-      </Suspense>
+      <Routing />
+      <Suspense fallback={<div>Loading Button...</div>}></Suspense>
     </Layout>
   );
 }

@@ -3,7 +3,7 @@ import { Todo } from '../types/todo';
 
 const TODO_API_URL = 'https://jsonplaceholder.cypress.io/todos';
 
-interface GetTodosParams {
+export interface GetTodosParams {
   limit?: number;
   start?: number;
   completed?: boolean;
