@@ -9,7 +9,6 @@ const TodoTable = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(false);
-  // const [completedFilter, setCompletedFilter] = useState<boolean | undefined>(undefined);
   const observer = useRef<IntersectionObserver | null>(null);
   const [start, setStart] = useState(0);
   const [search, setSearch] = useState('');
@@ -93,7 +92,7 @@ const TodoTable = () => {
       <form>
         <div>
           <label>Поиск:</label>
-          <StyledInput type="text" {...register('searchQuery')} />
+          <StyledInput role="search" type="text" {...register('searchQuery')} />
           {errors.searchQuery && <span>{errors.searchQuery.message}</span>}
         </div>
         <TableContainer>
