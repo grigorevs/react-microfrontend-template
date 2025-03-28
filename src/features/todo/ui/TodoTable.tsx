@@ -91,9 +91,11 @@ const TodoTable = () => {
     <div>
       <form>
         <div>
-          <label>Поиск:</label>
-          <StyledInput role="search" type="text" {...register('searchQuery')} />
-          {errors.searchQuery && <span>{errors.searchQuery.message}</span>}
+          <label htmlFor="searchQuery">
+            Поиск:
+            <StyledInput role="search" type="text" id="searchQuery" {...register('searchQuery')} />
+            {errors.searchQuery && <span>{errors.searchQuery.message}</span>}
+          </label>
         </div>
         <TableContainer>
           <StyledTable>

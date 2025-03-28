@@ -3,13 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "overrides": {
+    "eslint-config-react-app": {
+      "eslint": "$eslint",
+      "@typescript-eslint/eslint-plugin": "$@typescript-eslint/eslint-plugin",
+      "@typescript-eslint/parser": "$@typescript-eslint/parser"
+    }
+  },
   "scripts": {
     "start": "webpack serve --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
     "start:todo": "webpack serve --config src/features/todo/webpack.config.js",
     "build:todo": "webpack --config src/features/todo/webpack.config.js",
     "test:unit": "jest",
-    "test:e2e": "cypress run", 
+    "test:e2e": "cypress run",
     "test:e2e:open": "cypress open",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
